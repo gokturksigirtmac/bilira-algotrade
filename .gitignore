@@ -1,0 +1,43 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# macOS files
+.DS_Store
+
+# VSCode settings
+.vscode/
+
+# Logs and local debug files
+*.log
+*.out
+*.err
+
+# Environment variables
+.env
+.env.*
+
+# Python tooling
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# pytest cache
+.pytest_cache/
+
+# MongoDB dump files
+*.bson
+*.json
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Redis dump
+dump.rdb
