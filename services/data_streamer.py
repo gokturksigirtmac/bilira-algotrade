@@ -34,14 +34,14 @@ async def start_price_stream(url: str, exchange: str, ticker: str, redis_client,
             print("Reconnecting in 5 seconds...")
             await asyncio.sleep(5)
     
-async def store_klines_individual(redis_client, klines, symbol):
+async def store_klines_individual_into_redis(redis_client, klines, ticker):
     for kline in klines:
         timestamp = kline[0]
-        key = f"klines:{symbol}:{timestamp}"
+        key = f"klines:{ticker}:{timestamp}"
         value = json.dumps(kline)
         try:
             await redis_client.set(key, value)
-            print(f"Stored kline for {symbol} at {timestamp}")
+            print(f"Stored kline for {ticker} at {timestamp}")
         except Exception as e:
-            print(f"Error storing kline for {symbol} at {timestamp}: {e}")
+            print(f"Error storing kline for {ticker} at {timestamp}: {e}")
             continue
