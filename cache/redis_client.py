@@ -29,28 +29,3 @@ async def init_redis():
     if redis_client is None:
         raise Exception("Redis client is not initialized properly.")
     return redis_client
-
-
-async def set_value(key, value):
-    await redis_client.set(key, value)
-
-
-async def get_value(key):
-    return await redis_client.get(key)
-
-async def push_price(key, price, max_length=200):
-    await redis_client.lpush(key, price)
-    await redis_client.ltrim(key, 0, max_length - 1)
-
-
-async def get_list(key):
-    return await redis_client.lrange(key, 0, -1)
-
-async def publish(channel, message):
-    await redis_client.publish(channel, message)
-
-
-async def subscribe(channel):
-    pubsub = redis_client.pubsub()
-    await pubsub.subscribe(channel)
-    return pubsub
