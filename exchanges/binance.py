@@ -14,6 +14,15 @@ load_dotenv()
 
 binance_klines_base_url = os.getenv("BINANCE_KLINES_BASE_URL", "https://api.binance.com")
 binance_klines_endpoint = os.getenv("BINANCE_KLINES_ENDPOINT", "/api/v3/klines")
+
+"""
+ - Here is the BinanceExchange class that implements the ExchangeInterface.
+ - It provides methods to fetch market data, store kline data into MongoDB,
+and start a WebSocket stream for order book data.
+ - Through to strategy pattern we can easily add new exchanges in the future.
+ - I was used this pattern because of its flexibility and extensibility.
+ - I was used only exchange of Binance for the case.
+"""
 class BinanceExchange(ExchangeInterface):
     def __init__(self):
         self=self

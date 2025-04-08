@@ -1,8 +1,10 @@
-import asyncio
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 import os
-from dotenv import load_dotenv
+import asyncio
+
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from redis.asyncio import Redis
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
