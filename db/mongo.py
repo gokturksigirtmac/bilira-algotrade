@@ -24,7 +24,6 @@ async def init_mongo():
        ways to do this, but i choosed this way for the case. It can modify according to 
        business logic.
     """
-    print("[DEBUG] Using DB:", MONGO_DB_NAME)
     await mongo_client.drop_database(MONGO_DB_NAME)
     print(f"[MongoDB] Dropped database: {MONGO_DB_NAME}")
     
@@ -33,18 +32,3 @@ async def init_mongo():
     print(f"[MongoDB] Connected to database: {MONGO_DB_NAME}")
     print("[MongoDB] Connected successfully!")
     return mongo_client, db
-
-async def store_klines_individual_into_mongo(mongo_db, klines, ticker):
-    for kline in klines:
-        timestamp = kline[0]
-        value = json.dumps(kline)
-        try:
-            await mongo_db.klines.insert_one({
-                "ticker": ticker,
-                "timestamp": timestamp,
-                "kline": value
-            })
-            print(f"Stored kline for {ticker} at {timestamp}")
-        except Exception as e:
-            print(f"Error storing kline for {ticker} at {timestamp}: {e}")
-            continue
