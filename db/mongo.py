@@ -6,7 +6,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 load_dotenv()
 
-# MongoDB config from .env
 MONGO_HOST = os.getenv("MONGO_HOST", "localhost")
 MONGO_PORT = int(os.getenv("MONGO_PORT", 27017))
 MONGO_DB_NAME = os.getenv("MONGO_DB", "algotrading")
@@ -33,3 +32,13 @@ async def init_mongo():
     print(f"[MongoDB] Connected to database: {MONGO_DB_NAME}")
     print("[MongoDB] Connected successfully!")
     return mongo_client, db
+
+def get_mongo_db():
+      """
+         - This function is used to get the mongo client and db.
+         - It can be used in other modules.
+      """
+      if mongo_client is None or db is None:
+         raise Exception("MongoDB client is not initialized. Call init_mongo() first.")
+      
+      return mongo_client, db

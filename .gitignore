@@ -19,9 +19,6 @@ ENV/
 *.out
 *.err
 
-# Environment variables
-.env
-.env.*
 
 # Python tooling
 *.egg-info/
